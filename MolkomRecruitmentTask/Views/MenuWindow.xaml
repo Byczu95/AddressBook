@@ -1,0 +1,67 @@
+﻿<Window x:Class="MolkomRecruitmentTask.Views.MenuWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MolkomRecruitmentTask.Views"
+        mc:Ignorable="d"
+        Title="Książka adresowa" 
+        MinHeight="450" MinWidth="800"
+        Height="550" Width="1310">
+    <Grid>
+        <Menu x:Name="menu" HorizontalAlignment="Left" VerticalAlignment="Top" IsMainMenu="True" 
+              Width="{Binding ElementName=grid_Main,Path=ActualWidth}" DockPanel.Dock="Top">
+            <MenuItem  Header="Wybór listy" Width="323" >
+                <MenuItem x:Name="AdressBook" Header="Książka adresowa" Command="{Binding AdressBookButtonClick}"/>
+                <MenuItem x:Name="Cities" Header="Miejscowości" Command="{Binding CitiesButtonClick}"/>
+            </MenuItem>
+        </Menu>
+
+        <Label Content="Wyszukaj" HorizontalAlignment="Left" Margin="11,30,0,0" VerticalAlignment="Top" Width="80" HorizontalContentAlignment="Right"/>
+        <ComboBox SelectedIndex="{Binding SearchSelectedIndex}" 
+            SelectedItem="{Binding SearchSelectedItem}" 
+            SelectedValue="{Binding SearchSelectedValue}" 
+            ItemsSource="{Binding SortComboBoxContent}" 
+            HorizontalAlignment="Left" Margin="102,31,0,0" VerticalAlignment="Top" Width="219"/>
+        <TextBox Text="{Binding SearchTextBoxContent}" HorizontalAlignment="Left" Height="23" Margin="342,30,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="281"/>
+        <Button Content="Wyszukaj" Command="{Binding SearchButtonClick}" HorizontalAlignment="Left" Margin="647,31,0,0" VerticalAlignment="Top" Width="99"/>
+
+        <Label Content="Sortowanie" HorizontalAlignment="Left" Margin="831,30,0,0" VerticalAlignment="Top" Width="99" HorizontalContentAlignment="Right"/>
+        <ComboBox SelectedIndex="{Binding SortSelectedIndex}" 
+            ItemsSource="{Binding SortComboBoxContent}" 
+            HorizontalAlignment="Left" Margin="944,30,0,0" VerticalAlignment="Top" Width="278"/>
+
+        <ListView Background="#FFECE9DB" x:Name="listView" Height="{Binding SystemParameters.PrimaryScreenHeight}"  
+                Width="{Binding SystemParameters.PrimaryScreenWidth}" FontSize="20" BorderBrush="Black" HorizontalContentAlignment="Right"
+                ItemsSource="{Binding DisplaySource ,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                  SelectedItem="{Binding SelectedListViewItem,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
+                SelectionMode="Single" IsSynchronizedWithCurrentItem="True" SelectedIndex="{Binding IndexBind}"  Margin="0,61,0,35">
+            <ListView.View>
+                <GridView>
+                    <GridView.ColumnHeaderContainerStyle>
+                        <Style TargetType="{x:Type GridViewColumnHeader}">
+                            <Setter Property="IsEnabled" Value="False"/>
+                        </Style>
+                    </GridView.ColumnHeaderContainerStyle>
+                    <GridViewColumn Header="{Binding Header1}" DisplayMemberBinding="{Binding Column1}" Width="{Binding WidthHeader1}"/>
+                    <GridViewColumn Header="{Binding Header2}" DisplayMemberBinding="{Binding Column2}" Width="{Binding WidthHeader2}"/>
+                    <GridViewColumn Header="{Binding Header3}" DisplayMemberBinding="{Binding Column3}" Width="{Binding WidthHeader3}"/>
+                    <GridViewColumn Header="{Binding Header4}" DisplayMemberBinding="{Binding Column4}" Width="{Binding WidthHeader4}"/>
+                    <GridViewColumn Header="{Binding Header5}" DisplayMemberBinding="{Binding Column5}" Width="{Binding WidthHeader5}"/>
+                    <GridViewColumn Header="{Binding Header6}" DisplayMemberBinding="{Binding Column6}" Width="{Binding WidthHeader6}"/>
+                    <GridViewColumn Header="{Binding Header7}" DisplayMemberBinding="{Binding Column7}" Width="{Binding WidthHeader7}"/>
+                    <GridViewColumn Header="{Binding Header8}" DisplayMemberBinding="{Binding Column8}" Width="{Binding WidthHeader8}"/>
+                    <GridViewColumn Header="{Binding Header9}" DisplayMemberBinding="{Binding Column9}" Width="{Binding WidthHeader9}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+
+        <Button Margin="10,0,0,4" FontSize="14" Content="Dodaj" Command="{Binding AddButtonClick}" Width="197" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
+        <Button Margin="0,0,0,4" FontSize="14" Content="Edytuj" Command="{Binding EditButtonClick}" Width="182" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
+        <Button Margin="0,0,24,4" FontSize="14" Content="Usuń" Command="{Binding DeleteButtonClick}" Width="210" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
+        
+
+    </Grid>
+</Window>
+
